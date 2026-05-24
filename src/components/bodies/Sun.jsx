@@ -68,6 +68,41 @@ const SUN_FRAGMENT_SHADER = `
   }
 `
 
+const SUN_GLOW_VERTEX_SHADER = `
+  varying vec2 vUv;
+
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`
+
+const SUN_GLOW_FRAGMENT_SHADER = `
+  uniform float uOpacity;
+  varying vec2 vUv;
+
+  void main() {
+    vec2 centeredUv = vUv - vec2(0.5);
+    float radius = length(centeredUv) * 2.0;
+    float edgeFade = smoothstep(1.0, 0.0, radius);
+    float inverseFalloff = 1.0 / (1.0 + radius * radius * 10.0);
+    float coronaFalloff = pow(max(0.0, 1.0 - radius), 2.85);
+    float alpha = (inverseFalloff * 0.22 + coronaFalloff * 0.78) * edgeFade * uOpacity;
+
+    vec3 centerColor = vec3(1.0, 0.965, 0.72);
+    vec3 warmColor = vec3(1.0, 0.78, 0.28);
+    vec3 outerColor = vec3(1.0, 0.48, 0.15);
+    vec3 color = mix(centerColor, warmColor, smoothstep(0.06, 0.44, radius));
+    color = mix(color, outerColor, smoothstep(0.38, 0.92, radius));
+
+    if (alpha < 0.002) {
+      discard;
+    }
+
+    gl_FragColor = vec4(color, alpha);
+  }
+`
+
 function CoronaLayer({ radius, scale, color, opacity }) {
   return (
     <mesh scale={[scale, scale, scale]}>
@@ -81,6 +116,26 @@ function CoronaLayer({ radius, scale, color, opacity }) {
         side={BackSide}
         toneMapped={false}
         transparent
+      />
+    </mesh>
+  )
+}
+
+function SoftCoronaBillboard({ radius }) {
+  return (
+    <mesh renderOrder={-1}>
+      <planeGeometry args={[radius * 4.2, radius * 4.2]} />
+      <shaderMaterial
+        blending={AdditiveBlending}
+        depthTest
+        depthWrite={false}
+        fragmentShader={SUN_GLOW_FRAGMENT_SHADER}
+        toneMapped={false}
+        transparent
+        uniforms={{
+          uOpacity: { value: 0.46 },
+        }}
+        vertexShader={SUN_GLOW_VERTEX_SHADER}
       />
     </mesh>
   )
@@ -106,6 +161,7 @@ export function Sun({
   scaleMode = SCALE_MODES.visualScale,
 }) {
   const meshRef = useRef(null)
+  const glowRef = useRef(null)
   const materialRef = useRef(null)
   const radius = scaleRadius(body.actualMeanRadiusKm, scaleMode, body.type)
   const coronaRadius =
@@ -124,9 +180,13 @@ export function Sun({
     [],
   )
 
-  useFrame((_, delta) => {
+  useFrame(({ camera }, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.y += delta * 0.08
+    }
+
+    if (glowRef.current) {
+      glowRef.current.quaternion.copy(camera.quaternion)
     }
 
     if (materialRef.current) {
@@ -153,15 +213,21 @@ export function Sun({
         />
       </mesh>
 
-      {coronaLayers.map((layer) => (
-        <CoronaLayer
-          color={layer.color}
-          key={`${layer.color}-${layer.scale}`}
-          opacity={layer.opacity}
-          radius={coronaRadius}
-          scale={layer.scale}
-        />
-      ))}
+      {scaleMode === SCALE_MODES.visualScale ? (
+        <group ref={glowRef}>
+          <SoftCoronaBillboard radius={radius} />
+        </group>
+      ) : (
+        coronaLayers.map((layer) => (
+          <CoronaLayer
+            color={layer.color}
+            key={`${layer.color}-${layer.scale}`}
+            opacity={layer.opacity}
+            radius={coronaRadius}
+            scale={layer.scale}
+          />
+        ))
+      )}
 
       <pointLight
         color="#fff1b8"

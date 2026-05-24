@@ -477,8 +477,8 @@
 }
 
 .real-alignment-toggle:disabled {
-  cursor: wait;
-  opacity: 0.64;
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .info-panel {

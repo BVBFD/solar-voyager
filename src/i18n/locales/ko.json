@@ -53,6 +53,8 @@
   },
   "controls": {
     "simulation": "시뮬레이션 컨트롤",
+    "realAlignmentPending": "정렬 준비중",
+    "realAlignmentPendingLabel": "JPL 실제 정렬 연결 준비중",
     "scale": {
       "aria": "스케일 모드",
       "title": "스케일",
@@ -98,11 +100,11 @@
     "sources": {
       "animated": "원형 궤도 애니메이션 모델",
       "loading": "JPL Horizons 불러오는 중",
-      "success": "JPL Horizons",
-      "fallback": "JPL 연결 불가, mock 원형 궤도",
+      "success": "JPL Horizons 실제 벡터",
+      "fallback": "내부 원형 궤도 대체 모델",
       "idle": "원형 궤도 애니메이션 모델",
       "error": "실제 정렬 사용 불가",
-      "bodyFallback": "이 천체는 원형 궤도 모델"
+      "bodyFallback": "내부 원형 궤도 대체 모델"
     }
   },
   "time": {

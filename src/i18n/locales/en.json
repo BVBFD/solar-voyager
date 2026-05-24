@@ -53,6 +53,8 @@
   },
   "controls": {
     "simulation": "Simulation controls",
+    "realAlignmentPending": "Align Soon",
+    "realAlignmentPendingLabel": "Real alignment is being prepared",
     "scale": {
       "aria": "Scale mode",
       "title": "Scale",
@@ -98,11 +100,11 @@
     "sources": {
       "animated": "Animated circular model",
       "loading": "Loading JPL Horizons",
-      "success": "JPL Horizons",
-      "fallback": "JPL unavailable, mock orbit fallback",
+      "success": "JPL Horizons real vectors",
+      "fallback": "Circular fallback model",
       "idle": "Animated circular model",
       "error": "Real alignment unavailable",
-      "bodyFallback": "Circular model for this body"
+      "bodyFallback": "Circular fallback model"
     }
   },
   "time": {

@@ -91,8 +91,6 @@ export function AppShell({
   const isRealAlignmentLoading = ephemerisData?.status === 'loading'
   const isSimulationOrbit =
     simulationMode === SIMULATION_MODES.simulationOrbit
-  const isRealAlignment =
-    simulationMode === SIMULATION_MODES.realAlignment
   const ephemerisStatus = ephemerisData?.status ?? 'idle'
   const ephemerisStatusLabel = t(
     EPHEMERIS_STATUS_LABEL_KEYS[ephemerisStatus] ??
@@ -174,12 +172,14 @@ export function AppShell({
           <code>{scaleModeLabel}</code>
           <code>{qualityLabel}</code>
           <button
+            aria-label={t('controls.realAlignmentPendingLabel')}
             className="real-alignment-toggle"
-            disabled={isRealAlignment || isRealAlignmentLoading}
+            disabled
+            title={t('controls.realAlignmentPendingLabel')}
             type="button"
             onClick={onLoadRealAlignment}
           >
-            {isRealAlignmentLoading ? t('ui.loading') : t('ui.nowRealAlignment')}
+            {t('controls.realAlignmentPending')}
           </button>
           <button
             type="button"

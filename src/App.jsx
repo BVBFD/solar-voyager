@@ -36,7 +36,9 @@ function App() {
     ? POSITION_MODE.horizonsVectorV3
     : POSITION_MODE.circularOrbitV1
   const { selectedBody, selectedBodyId, setSelectedBodyId } =
-    useSelectedBody(SIMULATION_DEFAULTS.selectedBodyId)
+    useSelectedBody(null)
+  const infoPanelBody =
+    selectedBody ?? SELECTABLE_BODIES.find((body) => body.id === 'sun') ?? null
   const {
     cameraTarget,
     cameraTravel,
@@ -138,7 +140,7 @@ function App() {
       onQualityChange={setQuality}
       onResetRealAlignment={handleReturnToSimulationOrbit}
       onReturnToSun={handleReturnToSun}
-      selectedBody={selectedBody}
+      selectedBody={infoPanelBody}
       selectedBodyId={selectedBodyId}
       onSelectBody={handleSelectBody}
       quality={quality}

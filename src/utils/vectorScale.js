@@ -1,4 +1,7 @@
 import {
+  SCALE_MODES,
+} from '../data/constants'
+import {
   calculateCircularOrbitPosition,
   calculateVectorPosition,
   POSITION_MODE,
@@ -7,6 +10,31 @@ import { scaleDistance, scalePosition } from './scale'
 
 const DEFAULT_CHILD_ORBIT_MULTIPLIERS = {
   moon: 5.5,
+}
+
+const VISUAL_PLANET_MIN_ORBIT_DISTANCE = {
+  mercury: 3.3,
+  venus: 3.95,
+  earth: 4.6,
+  mars: 5.45,
+}
+
+const VISUAL_MOON_MIN_ORBIT_DISTANCE = {
+  phobos: 0.42,
+  deimos: 0.58,
+}
+
+function clampHorizontalDistance(position, minDistance) {
+  const [x, y, z] = position
+  const horizontalDistance = Math.hypot(x, z)
+
+  if (!minDistance || horizontalDistance === 0 || horizontalDistance >= minDistance) {
+    return position
+  }
+
+  const ratio = minDistance / horizontalDistance
+
+  return [x * ratio, y, z * ratio]
 }
 
 export function scaleVectorPosition(positionKm, scaleMode) {
@@ -46,11 +74,31 @@ export function scaleBodyOrbitPosition(
     body.visualOrbitMultiplier ??
     (body.parentId ? DEFAULT_CHILD_ORBIT_MULTIPLIERS[body.type] ?? 1 : 1)
 
-  return [
+  const displayPosition = [
     scaledPosition[0] * multiplier,
     scaledPosition[1] * multiplier,
     scaledPosition[2] * multiplier,
   ]
+
+  if (scaleMode !== SCALE_MODES.visualScale) {
+    return displayPosition
+  }
+
+  if (body.type === 'planet' && body.parentId === 'sun') {
+    return clampHorizontalDistance(
+      displayPosition,
+      VISUAL_PLANET_MIN_ORBIT_DISTANCE[body.id],
+    )
+  }
+
+  if (body.type === 'moon') {
+    return clampHorizontalDistance(
+      displayPosition,
+      VISUAL_MOON_MIN_ORBIT_DISTANCE[body.id],
+    )
+  }
+
+  return displayPosition
 }
 
 function getLocalBodyPositionKm({

@@ -86,6 +86,18 @@ function CoronaLayer({ radius, scale, color, opacity }) {
   )
 }
 
+const DEFAULT_CORONA_LAYERS = [
+  { color: '#ffb347', opacity: 0.22, scale: 1.18 },
+  { color: '#ffd166', opacity: 0.12, scale: 1.45 },
+  { color: '#fff1a8', opacity: 0.06, scale: 1.9 },
+]
+
+const VISUAL_CORONA_LAYERS = [
+  { color: '#ffb347', opacity: 0.18, scale: 1.12 },
+  { color: '#ffd166', opacity: 0.08, scale: 1.3 },
+  { color: '#fff1a8', opacity: 0.025, scale: 1.55 },
+]
+
 export function Sun({
   body,
   children,
@@ -96,6 +108,12 @@ export function Sun({
   const meshRef = useRef(null)
   const materialRef = useRef(null)
   const radius = scaleRadius(body.actualMeanRadiusKm, scaleMode, body.type)
+  const coronaRadius =
+    scaleMode === SCALE_MODES.visualScale ? radius * 0.96 : radius
+  const coronaLayers =
+    scaleMode === SCALE_MODES.visualScale
+      ? VISUAL_CORONA_LAYERS
+      : DEFAULT_CORONA_LAYERS
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
@@ -135,9 +153,15 @@ export function Sun({
         />
       </mesh>
 
-      <CoronaLayer color="#ffb347" opacity={0.22} radius={radius} scale={1.18} />
-      <CoronaLayer color="#ffd166" opacity={0.12} radius={radius} scale={1.45} />
-      <CoronaLayer color="#fff1a8" opacity={0.06} radius={radius} scale={1.9} />
+      {coronaLayers.map((layer) => (
+        <CoronaLayer
+          color={layer.color}
+          key={`${layer.color}-${layer.scale}`}
+          opacity={layer.opacity}
+          radius={coronaRadius}
+          scale={layer.scale}
+        />
+      ))}
 
       <pointLight
         color="#fff1b8"

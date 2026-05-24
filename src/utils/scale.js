@@ -44,11 +44,11 @@ export function scaleRadius(
   switch (mode) {
     case SCALE_MODES.visualScale:
       if (bodyType === 'star') {
-        return 1.9
+        return 1.32
       }
 
       if (bodyType === 'moon' || bodyType === 'dwarfPlanet') {
-        return Math.max(0.045, Math.cbrt(earthRatio) * 0.22)
+        return Math.max(0.032, Math.cbrt(earthRatio) * 0.22)
       }
 
       // Cube-root compression keeps rocky planets clickable beside gas giants.

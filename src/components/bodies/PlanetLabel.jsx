@@ -9,7 +9,24 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value))
 }
 
-function getLabelPosition(radius) {
+function getLabelPosition(radius, body) {
+  const isMinor = body?.type && !['star', 'planet'].includes(body.type)
+
+  if (isMinor) {
+    const labelOffset = clamp(radius * 0.45, 0.1, 0.28)
+    const sideOffset = clamp(radius * 0.26, 0.06, 0.18)
+
+    if (body.id === 'phobos') {
+      return [-sideOffset, radius + labelOffset, 0]
+    }
+
+    if (body.id === 'deimos') {
+      return [sideOffset, radius + labelOffset + 0.06, 0]
+    }
+
+    return [sideOffset, radius + labelOffset, 0]
+  }
+
   const labelOffset = clamp(radius * 0.55, 0.16, 0.52)
   const sideOffset = clamp(radius * 0.34, 0.08, 0.36)
 
@@ -33,7 +50,7 @@ export function PlanetLabel({ body, isSelected, name, radius = 0 }) {
   const groupRef = useRef(null)
   const spanRef = useRef(null)
   const worldPositionRef = useRef(new Vector3())
-  const labelPosition = getLabelPosition(radius)
+  const labelPosition = getLabelPosition(radius, body)
   const icon = getBodyLabelIcon(body ?? { name: bodyName })
 
   useFrame(({ camera }) => {
@@ -44,13 +61,15 @@ export function PlanetLabel({ body, isSelected, name, radius = 0 }) {
     const distance = camera.position.distanceTo(
       groupRef.current.getWorldPosition(worldPositionRef.current),
     )
-    const fadeStart = isMinor ? 10 : 18
-    const fadeRange = isMinor ? 10 : 18
+    const fadeStart = isMinor ? 8 : 18
+    const fadeRange = isMinor ? 8 : 18
     const opacity = isSelected
-      ? 1
+      ? isMinor ? 0.82 : 0.94
       : Math.max(0, 1 - (distance - fadeStart) / fadeRange)
-    const minScale = isMinor ? 0.58 : 0.68
-    const scale = isSelected ? 1 : clamp(opacity, minScale, 0.94)
+    const minScale = isMinor ? 0.48 : 0.62
+    const scale = isSelected
+      ? isMinor ? 0.88 : 0.94
+      : clamp(opacity, minScale, isMinor ? 0.72 : 0.88)
 
     spanRef.current.style.opacity = opacity.toFixed(2)
     spanRef.current.style.transform = `scale(${scale})`

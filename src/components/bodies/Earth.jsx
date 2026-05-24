@@ -153,7 +153,7 @@ export function Earth({
       </group>
       {isSelected ? <EarthHighlightRing radius={radius} /> : null}
       <BodyDistanceMarker body={body} isSelected={isSelected} radius={radius} />
-      <PlanetLabel name={body.name} isSelected={isSelected} />
+      <PlanetLabel body={body} isSelected={isSelected} radius={radius} />
       {children}
     </group>
   )

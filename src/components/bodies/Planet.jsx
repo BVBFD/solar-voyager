@@ -133,7 +133,7 @@ export function Planet({
         <SelectionRing color="#67e8f9" radius={radius * 1.58} />
       ) : null}
       <BodyDistanceMarker body={body} isSelected={isSelected} radius={radius} />
-      <PlanetLabel name={body.name} isSelected={isSelected} />
+      <PlanetLabel body={body} isSelected={isSelected} radius={radius} />
       {children}
     </group>
   )

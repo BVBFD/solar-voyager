@@ -1,11 +1,17 @@
 import { Canvas } from '@react-three/fiber'
 import { ACESFilmicToneMapping, SRGBColorSpace } from 'three'
-import { CONTROL_MODES } from '../../data/constants'
+import { CONTROL_MODES, QUALITY_LEVELS } from '../../data/constants'
 import { BodySystem } from '../bodies/BodySystem'
 import { CameraController } from '../camera/CameraController'
 import { Lighting } from './Lighting'
 import { PostProcessing } from './PostProcessing'
 import { StarField } from './StarField'
+
+const CANVAS_DPR_BY_QUALITY = {
+  [QUALITY_LEVELS.low]: [1, 1],
+  [QUALITY_LEVELS.medium]: [1, 1.25],
+  [QUALITY_LEVELS.high]: [1, 1.5],
+}
 
 export function SolarScene({
   bodies,
@@ -27,6 +33,10 @@ export function SolarScene({
   onTravelComplete,
   smallBodyFields,
 }) {
+  const canvasDpr =
+    CANVAS_DPR_BY_QUALITY[quality] ??
+    CANVAS_DPR_BY_QUALITY[QUALITY_LEVELS.medium]
+
   return (
     <div
       className="solar-scene"
@@ -42,7 +52,7 @@ export function SolarScene({
     >
       <Canvas
         camera={{ position: [0, 16, 38], fov: 54 }}
-        dpr={[1, 2]}
+        dpr={canvasDpr}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
           gl.toneMapping = ACESFilmicToneMapping

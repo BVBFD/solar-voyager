@@ -29,6 +29,13 @@
       "realAlignment": "Real Alignment"
     }
   },
+  "panel": {
+    "collapse": "Collapse",
+    "expand": "Expand"
+  },
+  "voyager": {
+    "escHint": "Press ESC to release cursor · Exit Voyager Mode"
+  },
   "controlModes": {
     "orbit": "Observatory",
     "flightReady": "Voyager Ready",

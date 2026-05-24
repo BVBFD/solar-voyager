@@ -67,10 +67,31 @@
 .app-shell__panel--right {
   right: clamp(12px, 1.2vw, 16px);
   bottom: clamp(88px, 10vh, 96px);
+  display: grid;
+  gap: 12px;
   width: min(340px, calc(100vw - 32px));
   padding: 18px;
   overflow-y: auto;
   animation: dossier-in 220ms ease-out;
+}
+
+.app-shell__panel--right.is-collapsed {
+  top: clamp(122px, 15vh, 152px);
+  right: clamp(12px, 1.2vw, 16px);
+  bottom: auto;
+  width: min(220px, calc(100vw - 32px));
+  max-height: calc(100vh - 154px);
+}
+
+.app-shell__panel-body {
+  display: grid;
+  gap: 16px;
+  min-height: 0;
+}
+
+.app-shell__panel-body[hidden],
+.mission-status__items[hidden] {
+  display: none;
 }
 
 .app-shell__header {
@@ -105,6 +126,31 @@
   border-radius: 6px;
   color: var(--text-strong);
   background: rgba(103, 232, 249, 0.08);
+}
+
+.panel-toggle--compact {
+  min-height: 28px;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.panel-collapse-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.panel-collapse-bar > span {
+  overflow: hidden;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .panel-toggle:hover,
@@ -327,6 +373,24 @@
   scrollbar-width: thin;
 }
 
+.mission-status.is-collapsed {
+  max-width: calc(100vw - 32px);
+  min-height: 42px;
+  padding: 6px 8px 6px 10px;
+}
+
+.mission-status__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mission-status__compact {
+  max-width: 180px;
+}
+
 .mission-status::-webkit-scrollbar {
   height: 6px;
 }
@@ -517,11 +581,42 @@
   right: 50%;
   bottom: clamp(12px, 1.2vw, 16px);
   z-index: 10;
+  display: grid;
+  gap: 10px;
   width: min(760px, calc(100vw - 420px));
   min-width: 360px;
   padding: 12px 14px;
   border-radius: 8px;
   transform: translateX(50%);
+}
+
+.time-dock.is-collapsed {
+  width: auto;
+  min-width: 0;
+  padding: 7px 9px;
+}
+
+.time-dock__bar {
+  min-width: 160px;
+}
+
+.voyager-esc-hint {
+  position: fixed;
+  top: clamp(64px, 8vh, 82px);
+  left: 50%;
+  z-index: 30;
+  max-width: calc(100vw - 32px);
+  padding: 6px 11px;
+  border: 1px solid rgba(112, 231, 255, 0.28);
+  border-radius: 999px;
+  color: rgba(235, 250, 255, 0.88);
+  background: rgba(5, 10, 24, 0.72);
+  backdrop-filter: blur(6px);
+  font-size: 11px;
+  line-height: 1.2;
+  pointer-events: none;
+  text-align: center;
+  transform: translateX(-50%);
 }
 
 .time-controls {
@@ -1094,6 +1189,15 @@
     bottom: 88px;
     left: 12px;
     width: auto;
+  }
+
+  .app-shell__panel--right.is-collapsed {
+    top: clamp(148px, 24vh, 190px);
+    right: 12px;
+    bottom: auto;
+    left: auto;
+    width: min(220px, calc(100vw - 32px));
+    max-height: calc(100vh - 164px);
   }
 
   .time-dock {

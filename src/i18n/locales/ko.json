@@ -29,6 +29,13 @@
       "realAlignment": "실제 정렬"
     }
   },
+  "panel": {
+    "collapse": "접기",
+    "expand": "열기"
+  },
+  "voyager": {
+    "escHint": "ESC로 마우스 해제 · Voyager 모드 종료"
+  },
   "controlModes": {
     "orbit": "관측",
     "flightReady": "항해 준비",

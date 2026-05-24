@@ -63,6 +63,9 @@ export function AppShell({
 }) {
   const { t } = useTranslation()
   const [isMissionOpen, setIsMissionOpen] = useState(true)
+  const [isStatusOpen, setIsStatusOpen] = useState(true)
+  const [isDossierOpen, setIsDossierOpen] = useState(true)
+  const [isTimeOpen, setIsTimeOpen] = useState(true)
   const controlModeLabel =
     {
       [CONTROL_MODES.orbit]: t('controlModes.orbit'),
@@ -106,6 +109,10 @@ export function AppShell({
       : null
   const scaleModeLabel = t(SCALE_LABEL_KEYS[scaleMode] ?? SCALE_LABEL_KEYS.visualScale)
   const qualityLabel = t(QUALITY_LABEL_KEYS[quality] ?? QUALITY_LABEL_KEYS.medium)
+  const isVoyagerHintVisible =
+    controlMode === CONTROL_MODES.flightReady ||
+    controlMode === CONTROL_MODES.flightActive ||
+    controlMode === CONTROL_MODES.transitioning
 
   return (
     <div className="app-shell">
@@ -128,80 +135,129 @@ export function AppShell({
             type="button"
             onClick={() => setIsMissionOpen((value) => !value)}
           >
-            {isMissionOpen ? t('ui.hide') : t('ui.open')}
+            {isMissionOpen ? t('panel.collapse') : t('panel.expand')}
           </button>
         </header>
-        {isMissionOpen ? (
-          <>
-            <PlanetList
-              bodies={bodies}
-              selectedBodyId={selectedBodyId}
-              onSelectBody={onSelectBody}
-            />
-            <ControlPanel
-              bloom={bloom}
-              onBloomChange={onBloomChange}
-              onQualityChange={onQualityChange}
-              quality={quality}
-              scaleMode={scaleMode}
-              onScaleModeChange={onScaleModeChange}
-            />
-          </>
-        ) : null}
+        <div
+          className="app-shell__panel-body"
+          hidden={!isMissionOpen}
+        >
+          <PlanetList
+            bodies={bodies}
+            selectedBodyId={selectedBodyId}
+            onSelectBody={onSelectBody}
+          />
+          <ControlPanel
+            bloom={bloom}
+            onBloomChange={onBloomChange}
+            onQualityChange={onQualityChange}
+            quality={quality}
+            scaleMode={scaleMode}
+            onScaleModeChange={onScaleModeChange}
+          />
+        </div>
       </aside>
 
-      <div className="mission-status">
-        <span>{travelLabel}</span>
-        <code>{controlModeLabel}</code>
-        <code>{simulationModeLabel}</code>
-        {ephemerisData?.status === 'loading' ||
-        ephemerisData?.status === 'error' ? (
-          <code>{ephemerisStatusLabel}</code>
+      <div className={isStatusOpen ? 'mission-status' : 'mission-status is-collapsed'}>
+        {!isStatusOpen ? (
+          <span className="mission-status__compact">{controlModeLabel}</span>
         ) : null}
-        {fallbackNotice ? <code>{fallbackNotice}</code> : null}
-        <code>{scaleModeLabel}</code>
-        <code>{qualityLabel}</code>
+        <div className="mission-status__items" hidden={!isStatusOpen}>
+          <span>{travelLabel}</span>
+          <code>{controlModeLabel}</code>
+          <code>{simulationModeLabel}</code>
+          {ephemerisData?.status === 'loading' ||
+          ephemerisData?.status === 'error' ? (
+            <code>{ephemerisStatusLabel}</code>
+          ) : null}
+          {fallbackNotice ? <code>{fallbackNotice}</code> : null}
+          <code>{scaleModeLabel}</code>
+          <code>{qualityLabel}</code>
+          <button
+            className="real-alignment-toggle"
+            disabled={isRealAlignment || isRealAlignmentLoading}
+            type="button"
+            onClick={onLoadRealAlignment}
+          >
+            {isRealAlignmentLoading ? t('ui.loading') : t('ui.nowRealAlignment')}
+          </button>
+          <button
+            type="button"
+            disabled={isSimulationOrbit || isRealAlignmentLoading}
+            onClick={onResetRealAlignment}
+          >
+            {t('ui.simulationOrbit')}
+          </button>
+          <ModeSwitcher
+            controlMode={controlMode}
+            onActivateFlight={onActivateFlight}
+            onEnterFlightReady={onEnterFlightReady}
+            onExitToOrbit={onExitToOrbit}
+          />
+          <button type="button" onClick={onReturnToSun}>
+            {t('ui.returnToSun')}
+          </button>
+          <LanguageToggle />
+        </div>
         <button
-          className="real-alignment-toggle"
-          disabled={isRealAlignment || isRealAlignmentLoading}
+          className="panel-toggle panel-toggle--compact"
           type="button"
-          onClick={onLoadRealAlignment}
+          onClick={() => setIsStatusOpen((value) => !value)}
         >
-          {isRealAlignmentLoading ? t('ui.loading') : t('ui.nowRealAlignment')}
+          {isStatusOpen ? t('panel.collapse') : t('panel.expand')}
         </button>
-        <button
-          type="button"
-          disabled={isSimulationOrbit || isRealAlignmentLoading}
-          onClick={onResetRealAlignment}
-        >
-          {t('ui.simulationOrbit')}
-        </button>
-        <ModeSwitcher
-          controlMode={controlMode}
-          onActivateFlight={onActivateFlight}
-          onEnterFlightReady={onEnterFlightReady}
-          onExitToOrbit={onExitToOrbit}
-        />
-        <button type="button" onClick={onReturnToSun}>
-          {t('ui.returnToSun')}
-        </button>
-        <LanguageToggle />
       </div>
 
-      <aside className="app-shell__panel app-shell__panel--right">
-        <InfoPanel
-          body={selectedBody}
-          ephemerisData={ephemerisData}
-          key={selectedBody?.id}
-        />
+      {isVoyagerHintVisible ? (
+        <div className="voyager-esc-hint" aria-live="polite">
+          {t('voyager.escHint')}
+        </div>
+      ) : null}
+
+      <aside
+        className={
+          isDossierOpen
+            ? 'app-shell__panel app-shell__panel--right'
+            : 'app-shell__panel app-shell__panel--right is-collapsed'
+        }
+      >
+        <header className="panel-collapse-bar">
+          <span>{t('info.dossier')}</span>
+          <button
+            className="panel-toggle panel-toggle--compact"
+            type="button"
+            onClick={() => setIsDossierOpen((value) => !value)}
+          >
+            {isDossierOpen ? t('panel.collapse') : t('panel.expand')}
+          </button>
+        </header>
+        <div className="app-shell__panel-body" hidden={!isDossierOpen}>
+          <InfoPanel
+            body={selectedBody}
+            ephemerisData={ephemerisData}
+            key={selectedBody?.id}
+          />
+        </div>
       </aside>
 
-      <div className="time-dock">
-        <TimeControls
-          realAlignmentSnapshotTime={realAlignmentSnapshotTime}
-          simulationMode={simulationMode}
-          simulationTime={simulationTime}
-        />
+      <div className={isTimeOpen ? 'time-dock' : 'time-dock is-collapsed'}>
+        <header className="panel-collapse-bar time-dock__bar">
+          <span>{t('time.title')}</span>
+          <button
+            className="panel-toggle panel-toggle--compact"
+            type="button"
+            onClick={() => setIsTimeOpen((value) => !value)}
+          >
+            {isTimeOpen ? t('panel.collapse') : t('panel.expand')}
+          </button>
+        </header>
+        <div className="app-shell__panel-body" hidden={!isTimeOpen}>
+          <TimeControls
+            realAlignmentSnapshotTime={realAlignmentSnapshotTime}
+            simulationMode={simulationMode}
+            simulationTime={simulationTime}
+          />
+        </div>
       </div>
 
       <FlightModeOverlay

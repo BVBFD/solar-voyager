@@ -1,0 +1,187 @@
+{
+  "app": {
+    "name": "Solar Voyager"
+  },
+  "ui": {
+    "missionControl": "미션 컨트롤",
+    "hide": "접기",
+    "open": "열기",
+    "realAlignment": "실제 정렬",
+    "realAlignmentFallback": "실제 데이터 실패 · 시뮬레이션 좌표 사용 중",
+    "animatedOrbit": "시뮬레이션",
+    "simulationOrbit": "시뮬레이션",
+    "loading": "불러오는 중...",
+    "nowRealAlignment": "실제 정렬",
+    "returnToSun": "태양",
+    "solarSystem": "태양계",
+    "language": "언어",
+    "english": "EN",
+    "korean": "KO",
+    "ephemerisStatus": {
+      "idle": "시뮬레이션",
+      "loading": "정렬 로딩 중",
+      "success": "실제 정렬",
+      "fallback": "정렬 대체",
+      "error": "정렬 오류"
+    },
+    "simulationModes": {
+      "simulationOrbit": "시뮬레이션",
+      "realAlignment": "실제 정렬"
+    }
+  },
+  "controlModes": {
+    "orbit": "관측",
+    "flightReady": "항해 준비",
+    "flightActive": "Voyager Mode",
+    "flightPaused": "항해 일시정지",
+    "transitioning": "전환 중"
+  },
+  "travel": {
+    "flightReady": "Voyager Mode 준비 완료",
+    "flightActive": "Voyager Mode 항해 중",
+    "flightPaused": "항해 일시정지",
+    "transitioning": "조작 상태 정렬 중...",
+    "travelingTo": "{{body}}로 이동 중...",
+    "orbiting": "{{body}} 관측 중"
+  },
+  "controls": {
+    "simulation": "시뮬레이션 컨트롤",
+    "scale": {
+      "aria": "스케일 모드",
+      "title": "스케일",
+      "visual": "시각",
+      "compressed": "압축",
+      "realDraft": "실제 초안",
+      "descriptions": {
+        "visualScale": "탐색하기 좋게 거리와 반지름을 압축합니다.",
+        "compressedRealScale": "AU 간격은 선형에 가깝게 두고 행성 반지름을 보강합니다.",
+        "realScalePlaceholder": "정확한 실제 스케일이 왜 어려운지 보여주는 초안입니다."
+      }
+    },
+    "quality": {
+      "aria": "렌더 품질",
+      "title": "배경 품질",
+      "low": "낮음",
+      "medium": "중간",
+      "high": "높음"
+    },
+    "bloom": {
+      "aria": "태양 블룸 조절",
+      "title": "태양 블룸",
+      "strength": "강도: {{value}}",
+      "radius": "반경: {{value}}"
+    }
+  },
+  "planetList": {
+    "aria": "태양계 천체 목록"
+  },
+  "info": {
+    "emptyTitle": "선택된 천체 없음",
+    "emptyBody": "천체를 선택해 미션 데이터를 확인하세요.",
+    "dossier": "행성 기록",
+    "meanRadius": "평균 반지름",
+    "avgParentOrbit": "평균 부모 궤도",
+    "avgDistance": "평균 거리",
+    "siderealOrbit": "항성 공전",
+    "siderealRotation": "항성 자전",
+    "dataSource": "데이터 출처",
+    "lastUpdate": "마지막 업데이트",
+    "vectorEpoch": "벡터 기준 시각",
+    "notLoaded": "불러오지 않음",
+    "sources": {
+      "animated": "원형 궤도 애니메이션 모델",
+      "loading": "JPL Horizons 불러오는 중",
+      "success": "JPL Horizons",
+      "fallback": "JPL 연결 불가, mock 원형 궤도",
+      "idle": "원형 궤도 애니메이션 모델",
+      "error": "실제 정렬 사용 불가",
+      "bodyFallback": "이 천체는 원형 궤도 모델"
+    }
+  },
+  "time": {
+    "title": "시간",
+    "pause": "일시정지",
+    "play": "재생",
+    "reset": "초기화",
+    "speed": "속도:",
+    "locked": "고정",
+    "lockedToRealAlignment": "실제 정렬 시각 고정",
+    "lastUpdated": "업데이트"
+  },
+  "mode": {
+    "enterFreeFlight": "보이저",
+    "clickCanvasToLaunch": "캔버스를 클릭해 출항",
+    "cancel": "취소",
+    "exitFlight": "항해 종료",
+    "resumeFlight": "항해 재개",
+    "exitToOrbit": "관측 모드로 돌아가기",
+    "switching": "전환 중..."
+  },
+  "flight": {
+    "readyEyebrow": "항해 준비",
+    "readyTitle": "클릭해서 Voyager Mode 시작",
+    "readyBody": "커서가 캔버스에 고정됩니다. 출항 후 마우스로 시점을 조작합니다.",
+    "launchAction": "Voyager Mode 시작",
+    "controlsEyebrow": "조작",
+    "switchingTitle": "전환 중...",
+    "switchingBody": "카메라와 입력 상태를 정리하고 있습니다.",
+    "pausedEyebrow": "Voyager Mode",
+    "pausedTitle": "항해 일시정지",
+    "pausedBody": "커서 고정이 해제되었습니다. 항해를 재개하거나 관측 모드로 돌아갈 수 있습니다.",
+    "nearest": "가까운 천체",
+    "distance": "거리",
+    "speed": "속도",
+    "launchCue": "출항 벡터 설정",
+    "hudTitle": "Voyager Mode",
+    "move": "WASD / 방향키: 이동",
+    "mouse": "마우스: 시점",
+    "vertical": "Q/E: 하강/상승",
+    "boost": "Shift: 부스트",
+    "brake": "Space: 감속",
+    "escape": "Esc: 항해 일시정지",
+    "errors": {
+      "pointerLockBlockedLaunch": "포인터 고정이 차단되었습니다. 출항 안내 또는 캔버스를 다시 클릭하세요.",
+      "pointerLockBlockedResume": "포인터 고정이 차단되었습니다. 항해 재개를 다시 클릭하세요.",
+      "pointerLockUnsupported": "이 브라우저는 캔버스 포인터 고정을 지원하지 않습니다."
+    }
+  },
+  "loadingScreen": {
+    "message": "시뮬레이션 셸 준비 중"
+  },
+  "bodies": {
+    "sun": { "description": "태양계의 중심 항성이며 장면의 주 광원입니다." },
+    "mercury": { "description": "태양에 가장 가까운 가장 작은 행성입니다." },
+    "venus": { "description": "두꺼운 황금빛 대기로 뒤덮인 뜨거운 암석 행성입니다." },
+    "earth": { "description": "스케일, 구름, 대기, 항해 기준으로 쓰이는 참조 행성입니다." },
+    "mars": { "description": "얇은 대기와 붉은 먼지 지형을 가진 차가운 암석 행성입니다." },
+    "jupiter": { "description": "태양계에서 가장 큰 행성이며 줄무늬와 폭풍 표현을 준비 중입니다." },
+    "saturn": { "description": "넓은 고리계를 가진 가스 행성으로 위성 확장을 준비 중입니다." },
+    "uranus": { "description": "크게 기울어진 자전축과 청록색 대기를 가진 얼음 행성입니다." },
+    "neptune": { "description": "깊은 푸른 대기 산란을 가진 먼 얼음 행성입니다." },
+    "moon": { "description": "지구의 주요 위성이며 향후 실제 천문력 교체를 준비합니다." },
+    "phobos": { "description": "화성의 안쪽 위성으로 부모-자식 궤도 렌더링을 준비합니다." },
+    "deimos": { "description": "화성의 바깥쪽 위성으로 부모-자식 궤도 렌더링을 준비합니다." },
+    "io": { "description": "대략적인 궤도 거리를 가진 갈릴레이 위성 placeholder입니다." },
+    "europa": { "description": "미래의 얼음 바다 세계 데이터를 위해 남겨 둔 갈릴레이 위성입니다." },
+    "ganymede": { "description": "태양계에서 가장 큰 위성이며 우선순위 높은 위성으로 포함됩니다." },
+    "callisto": { "description": "중첩 위성 시스템 검증에 쓰이는 바깥 갈릴레이 위성입니다." },
+    "titan": { "description": "토성계의 대표 위성으로 대기 데이터는 이후 단계에 반영합니다." },
+    "enceladus": { "description": "분출 plume과 표면 디테일 표현을 위해 예약된 얼음 위성입니다." },
+    "rhea": { "description": "중간/높은 품질에서 토성계 위성 밀도를 보강합니다." },
+    "iapetus": { "description": "계층 구조와 라벨 LOD 테스트에 유용한 먼 토성 위성입니다." },
+    "dione": { "description": "중간 크기의 토성 위성 placeholder입니다." },
+    "tethys": { "description": "중간 크기의 토성 위성 placeholder입니다." },
+    "mimas": { "description": "높은 품질 단계에서 표시되는 작은 안쪽 토성 위성입니다." },
+    "titania": { "description": "천왕성의 주요 위성 placeholder입니다." },
+    "oberon": { "description": "천왕성의 바깥 주요 위성 placeholder입니다." },
+    "umbriel": { "description": "어두운 천왕성 위성 placeholder입니다." },
+    "ariel": { "description": "천왕성의 주요 위성 placeholder입니다." },
+    "miranda": { "description": "높은 품질 단계에서 표시되는 작은 천왕성 위성입니다." },
+    "triton": { "description": "역행 궤도 placeholder 데이터를 가진 해왕성의 주요 위성입니다." },
+    "pluto": { "description": "카이퍼벨트 확장의 첫 목표로 포함된 왜행성입니다." },
+    "ceres": { "description": "소행성대에서 가장 큰 천체이며 왜행성으로 모델링됩니다." },
+    "eris": { "description": "산란원반 확장을 위해 예약된 먼 왜행성입니다." },
+    "haumea": { "description": "빠르게 자전하는 왜행성 placeholder이며 형상 모델링은 보류되어 있습니다." },
+    "makemake": { "description": "카이퍼벨트 왜행성 placeholder입니다." }
+  }
+}

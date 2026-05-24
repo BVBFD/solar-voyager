@@ -1,0 +1,187 @@
+{
+  "app": {
+    "name": "Solar Voyager"
+  },
+  "ui": {
+    "missionControl": "Mission Control",
+    "hide": "Hide",
+    "open": "Open",
+    "realAlignment": "Real Alignment",
+    "realAlignmentFallback": "Real data failed · using simulation coordinates",
+    "animatedOrbit": "Simulation",
+    "simulationOrbit": "Simulation",
+    "loading": "Loading...",
+    "nowRealAlignment": "Real Align",
+    "returnToSun": "Sun",
+    "solarSystem": "Solar System",
+    "language": "Language",
+    "english": "EN",
+    "korean": "KO",
+    "ephemerisStatus": {
+      "idle": "Simulation",
+      "loading": "Loading Alignment",
+      "success": "Real Alignment",
+      "fallback": "Alignment Fallback",
+      "error": "Alignment Error"
+    },
+    "simulationModes": {
+      "simulationOrbit": "Simulation",
+      "realAlignment": "Real Alignment"
+    }
+  },
+  "controlModes": {
+    "orbit": "Observatory",
+    "flightReady": "Voyager Ready",
+    "flightActive": "Voyager Mode",
+    "flightPaused": "Flight Paused",
+    "transitioning": "Switching"
+  },
+  "travel": {
+    "flightReady": "Voyager mode ready",
+    "flightActive": "Voyager mode active",
+    "flightPaused": "Flight paused",
+    "transitioning": "Stabilizing controls...",
+    "travelingTo": "Traveling to {{body}}...",
+    "orbiting": "Observing {{body}}"
+  },
+  "controls": {
+    "simulation": "Simulation controls",
+    "scale": {
+      "aria": "Scale mode",
+      "title": "Scale",
+      "visual": "Visual",
+      "compressed": "Compressed",
+      "realDraft": "Real draft",
+      "descriptions": {
+        "visualScale": "Readable distance and radius compression for navigation.",
+        "compressedRealScale": "Linear AU spacing with boosted planet radii.",
+        "realScalePlaceholder": "True-scale draft showing why exact scale is difficult."
+      }
+    },
+    "quality": {
+      "aria": "Render quality",
+      "title": "Background Quality",
+      "low": "Low",
+      "medium": "Med",
+      "high": "High"
+    },
+    "bloom": {
+      "aria": "Sun bloom controls",
+      "title": "Sun Bloom",
+      "strength": "Strength: {{value}}",
+      "radius": "Radius: {{value}}"
+    }
+  },
+  "planetList": {
+    "aria": "Solar system bodies"
+  },
+  "info": {
+    "emptyTitle": "No body selected",
+    "emptyBody": "Select a body to inspect its mission data.",
+    "dossier": "Planet Dossier",
+    "meanRadius": "Mean radius",
+    "avgParentOrbit": "Avg. parent orbit",
+    "avgDistance": "Avg. distance",
+    "siderealOrbit": "Sidereal orbit",
+    "siderealRotation": "Sidereal rotation",
+    "dataSource": "Data source",
+    "lastUpdate": "Last update",
+    "vectorEpoch": "Vector epoch",
+    "notLoaded": "Not loaded",
+    "sources": {
+      "animated": "Animated circular model",
+      "loading": "Loading JPL Horizons",
+      "success": "JPL Horizons",
+      "fallback": "JPL unavailable, mock orbit fallback",
+      "idle": "Animated circular model",
+      "error": "Real alignment unavailable",
+      "bodyFallback": "Circular model for this body"
+    }
+  },
+  "time": {
+    "title": "Time",
+    "pause": "Pause",
+    "play": "Play",
+    "reset": "Reset",
+    "speed": "Speed:",
+    "locked": "Locked",
+    "lockedToRealAlignment": "Locked to real alignment",
+    "lastUpdated": "Updated"
+  },
+  "mode": {
+    "enterFreeFlight": "Voyager",
+    "clickCanvasToLaunch": "Click Canvas to Launch",
+    "cancel": "Cancel",
+    "exitFlight": "Exit Flight",
+    "resumeFlight": "Resume Flight",
+    "exitToOrbit": "Return to Observatory",
+    "switching": "Switching..."
+  },
+  "flight": {
+    "readyEyebrow": "Voyager Ready",
+    "readyTitle": "Click to enter Voyager Mode",
+    "readyBody": "The cursor will lock to the canvas. Use mouse look after launch.",
+    "launchAction": "Launch Voyager Mode",
+    "controlsEyebrow": "Controls",
+    "switchingTitle": "Switching...",
+    "switchingBody": "Camera and input state are being synchronized.",
+    "pausedEyebrow": "Voyager Mode",
+    "pausedTitle": "Flight Paused",
+    "pausedBody": "Cursor control is released. Resume to lock the canvas again, or return to observatory controls.",
+    "nearest": "Nearest",
+    "distance": "Distance",
+    "speed": "Speed",
+    "launchCue": "Launch Vector Set",
+    "hudTitle": "Voyager Mode",
+    "move": "WASD / Arrow Keys: move",
+    "mouse": "Mouse: look",
+    "vertical": "Q/E: down/up",
+    "boost": "Shift: boost",
+    "brake": "Space: brake",
+    "escape": "Esc: pause flight",
+    "errors": {
+      "pointerLockBlockedLaunch": "Pointer lock was blocked. Click the launch overlay or canvas again.",
+      "pointerLockBlockedResume": "Pointer lock was blocked. Click Resume Flight again.",
+      "pointerLockUnsupported": "This browser does not expose pointer lock for the canvas."
+    }
+  },
+  "loadingScreen": {
+    "message": "Preparing simulation shell"
+  },
+  "bodies": {
+    "sun": { "description": "The star anchoring the solar system and the main light source of the scene." },
+    "mercury": { "description": "The smallest planet, orbiting closest to the Sun." },
+    "venus": { "description": "A hot terrestrial world wrapped in a dense golden atmosphere." },
+    "earth": { "description": "The reference world for scale, clouds, atmosphere, and mission navigation." },
+    "mars": { "description": "A cold rocky planet with a thin atmosphere and dusty red terrain." },
+    "jupiter": { "description": "The largest planet, prepared for banded texture and storm detail." },
+    "saturn": { "description": "A gas giant with a wide ring system and future moon expansion." },
+    "uranus": { "description": "A tilted ice giant with a quiet cyan atmosphere." },
+    "neptune": { "description": "A distant ice giant with deep blue atmospheric scattering." },
+    "moon": { "description": "Earth's primary moon, ready for future ephemeris replacement." },
+    "phobos": { "description": "Inner Martian moon prepared for parent-child orbit rendering." },
+    "deimos": { "description": "Outer Martian moon prepared for parent-child orbit rendering." },
+    "io": { "description": "Galilean moon placeholder with approximate orbital distance." },
+    "europa": { "description": "Icy Galilean moon reserved for future ocean-world data." },
+    "ganymede": { "description": "The largest moon in the solar system, included as a high-priority satellite." },
+    "callisto": { "description": "Outer Galilean moon used to validate nested satellite systems." },
+    "titan": { "description": "Saturn's flagship moon with atmosphere data reserved for later passes." },
+    "enceladus": { "description": "Icy Saturnian moon reserved for plume and surface detail." },
+    "rhea": { "description": "Saturnian moon included for medium and high quality satellite density." },
+    "iapetus": { "description": "Distant Saturnian moon useful for hierarchy and label testing." },
+    "dione": { "description": "Mid-sized Saturnian moon placeholder." },
+    "tethys": { "description": "Mid-sized Saturnian moon placeholder." },
+    "mimas": { "description": "Small inner Saturnian moon for high quality passes." },
+    "titania": { "description": "Major Uranian moon placeholder." },
+    "oberon": { "description": "Outer major Uranian moon placeholder." },
+    "umbriel": { "description": "Dark Uranian moon placeholder." },
+    "ariel": { "description": "Major Uranian moon placeholder." },
+    "miranda": { "description": "Small Uranian moon for high quality passes." },
+    "triton": { "description": "Neptune's primary moon with retrograde orbit placeholder data." },
+    "pluto": { "description": "Dwarf planet included as the first Kuiper Belt expansion target." },
+    "ceres": { "description": "The largest object in the asteroid belt, modeled as a dwarf planet." },
+    "eris": { "description": "Distant dwarf planet reserved for scattered disk expansion." },
+    "haumea": { "description": "Fast-spinning dwarf planet placeholder with shape modeling reserved." },
+    "makemake": { "description": "Kuiper Belt dwarf planet placeholder." }
+  }
+}

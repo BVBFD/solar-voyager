@@ -9,6 +9,27 @@ const STAR_QUALITY = {
   [QUALITY_LEVELS.high]: { far: 3200, near: 420 },
 }
 
+const STAR_RENDER_PROFILES = {
+  [QUALITY_LEVELS.low]: {
+    farOpacity: 0.82,
+    farSize: 0.065,
+    nearOpacity: 0.9,
+    nearSize: 0.13,
+  },
+  [QUALITY_LEVELS.medium]: {
+    farOpacity: 1,
+    farSize: 0.065,
+    nearOpacity: 1,
+    nearSize: 0.13,
+  },
+  [QUALITY_LEVELS.high]: {
+    farOpacity: 0.64,
+    farSize: 0.052,
+    nearOpacity: 0.68,
+    nearSize: 0.104,
+  },
+}
+
 function createSeededRandom(seed) {
   let value = seed
 
@@ -36,7 +57,16 @@ function createStarPositions(count, radius, depth, seed) {
   return positions
 }
 
-function StarLayer({ color, count, depth, parallax, radius, seed, size }) {
+function StarLayer({
+  color,
+  count,
+  depth,
+  opacity,
+  parallax,
+  radius,
+  seed,
+  size,
+}) {
   const groupRef = useRef(null)
   const { camera } = useThree()
   const positions = useMemo(
@@ -64,6 +94,7 @@ function StarLayer({ color, count, depth, parallax, radius, seed, size }) {
         blending={AdditiveBlending}
         color={color}
         depthWrite={false}
+        opacity={opacity}
         size={size}
         sizeAttenuation
         transparent
@@ -74,6 +105,9 @@ function StarLayer({ color, count, depth, parallax, radius, seed, size }) {
 
 export function StarField({ quality = QUALITY_LEVELS.medium }) {
   const counts = STAR_QUALITY[quality] ?? STAR_QUALITY[QUALITY_LEVELS.medium]
+  const profile =
+    STAR_RENDER_PROFILES[quality] ??
+    STAR_RENDER_PROFILES[QUALITY_LEVELS.medium]
 
   return (
     <group>
@@ -81,19 +115,21 @@ export function StarField({ quality = QUALITY_LEVELS.medium }) {
         color="#8fb8ff"
         count={counts.far}
         depth={70}
+        opacity={profile.farOpacity}
         parallax={0.012}
         radius={150}
         seed={11}
-        size={0.065}
+        size={profile.farSize}
       />
       <StarLayer
         color="#ffffff"
         count={counts.near}
         depth={34}
+        opacity={profile.nearOpacity}
         parallax={0.035}
         radius={80}
         seed={29}
-        size={0.13}
+        size={profile.nearSize}
       />
     </group>
   )

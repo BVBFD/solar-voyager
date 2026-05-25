@@ -24,11 +24,11 @@ const POST_PROCESSING_BY_QUALITY = {
     vignetteDarkness: 0.48,
   },
   [QUALITY_LEVELS.high]: {
-    bloomMultiplier: 1.22,
-    depthOfField: true,
+    bloomMultiplier: 1.04,
+    depthOfField: false,
     multisampling: 4,
-    noiseOpacity: 0.025,
-    vignetteDarkness: 0.58,
+    noiseOpacity: 0.012,
+    vignetteDarkness: 0.5,
   },
 }
 

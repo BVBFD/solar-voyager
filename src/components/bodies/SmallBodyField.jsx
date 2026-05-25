@@ -21,6 +21,24 @@ const FIELD_COUNTS = {
   },
 }
 
+const FIELD_RENDER_PROFILES = {
+  [QUALITY_LEVELS.low]: {
+    opacityMultiplier: 0.9,
+    pointSize: 0.018,
+    trailSize: 0.024,
+  },
+  [QUALITY_LEVELS.medium]: {
+    opacityMultiplier: 1,
+    pointSize: 0.018,
+    trailSize: 0.024,
+  },
+  [QUALITY_LEVELS.high]: {
+    opacityMultiplier: 0.66,
+    pointSize: 0.014,
+    trailSize: 0.019,
+  },
+}
+
 function createSeededRandom(seedText) {
   let seed = Array.from(seedText).reduce(
     (total, character) => total + character.charCodeAt(0),
@@ -91,6 +109,13 @@ export function SmallBodyField({ field, quality, scaleMode }) {
     () => createFieldGeometry(field, quality, scaleMode),
     [field, quality, scaleMode],
   )
+  const renderProfile =
+    FIELD_RENDER_PROFILES[quality] ??
+    FIELD_RENDER_PROFILES[QUALITY_LEVELS.medium]
+  const pointSize =
+    field.fieldKind === 'cometTrails'
+      ? renderProfile.trailSize
+      : renderProfile.pointSize
 
   useEffect(() => () => geometry.dispose(), [geometry])
 
@@ -99,8 +124,8 @@ export function SmallBodyField({ field, quality, scaleMode }) {
       <pointsMaterial
         color={field.color}
         depthWrite={false}
-        opacity={field.opacity}
-        size={field.fieldKind === 'cometTrails' ? 0.024 : 0.018}
+        opacity={field.opacity * renderProfile.opacityMultiplier}
+        size={pointSize}
         sizeAttenuation
         transparent
       />

@@ -154,7 +154,7 @@ export function AppShell({
           <span className="mission-status__compact">{controlModeLabel}</span>
         ) : null}
         <div className="mission-status__items" hidden={!isStatusOpen}>
-          <span>{travelLabel}</span>
+          <span className="mission-status__label">{travelLabel}</span>
           <code>{controlModeLabel}</code>
           <code>{simulationModeLabel}</code>
           {ephemerisData?.status === 'loading' ||
@@ -189,15 +189,17 @@ export function AppShell({
           <button type="button" onClick={onReturnToSun}>
             {t('ui.returnToSun')}
           </button>
-          <LanguageToggle />
         </div>
-        <button
-          className="panel-toggle panel-toggle--compact"
-          type="button"
-          onClick={() => setIsStatusOpen((value) => !value)}
-        >
-          {isStatusOpen ? t('panel.collapse') : t('panel.expand')}
-        </button>
+        <div className="mission-status__tail">
+          <LanguageToggle />
+          <button
+            className="panel-toggle panel-toggle--compact"
+            type="button"
+            onClick={() => setIsStatusOpen((value) => !value)}
+          >
+            {isStatusOpen ? t('panel.collapse') : t('panel.expand')}
+          </button>
+        </div>
       </div>
 
       {isVoyagerHintVisible ? (

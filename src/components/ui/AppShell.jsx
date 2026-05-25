@@ -9,12 +9,6 @@ import { PlanetList } from './PlanetList'
 import { TimeControls } from './TimeControls'
 import { CONTROL_MODES, SIMULATION_MODES } from '../../data/constants'
 
-const SCALE_LABEL_KEYS = {
-  visualScale: 'controls.scale.visual',
-  compressedRealScale: 'controls.scale.compressed',
-  realScalePlaceholder: 'controls.scale.realDraft',
-}
-
 const QUALITY_LABEL_KEYS = {
   low: 'controls.quality.low',
   medium: 'controls.quality.medium',
@@ -54,8 +48,6 @@ export function AppShell({
   selectedBodyId,
   onSelectBody,
   quality,
-  scaleMode,
-  onScaleModeChange,
   simulationTime,
   simulationMode = SIMULATION_MODES.simulationOrbit,
   realAlignmentSnapshotTime,
@@ -105,7 +97,6 @@ export function AppShell({
     ephemerisData?.status === 'fallback'
       ? t('ui.realAlignmentFallback')
       : null
-  const scaleModeLabel = t(SCALE_LABEL_KEYS[scaleMode] ?? SCALE_LABEL_KEYS.visualScale)
   const qualityLabel = t(QUALITY_LABEL_KEYS[quality] ?? QUALITY_LABEL_KEYS.medium)
   const isVoyagerHintVisible =
     controlMode === CONTROL_MODES.flightReady ||
@@ -150,8 +141,6 @@ export function AppShell({
             onBloomChange={onBloomChange}
             onQualityChange={onQualityChange}
             quality={quality}
-            scaleMode={scaleMode}
-            onScaleModeChange={onScaleModeChange}
           />
         </div>
       </aside>
@@ -169,7 +158,6 @@ export function AppShell({
             <code>{ephemerisStatusLabel}</code>
           ) : null}
           {fallbackNotice ? <code>{fallbackNotice}</code> : null}
-          <code>{scaleModeLabel}</code>
           <code>{qualityLabel}</code>
           <button
             aria-label={t('controls.realAlignmentPendingLabel')}

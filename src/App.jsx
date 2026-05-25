@@ -6,7 +6,7 @@ import {
   CAMERA_TARGET_SOURCES,
   CONTROL_MODES,
   RENDER_DEFAULTS,
-  SIMULATION_DEFAULTS,
+  SCALE_MODES,
   SIMULATION_MODES,
 } from './data/constants'
 import { SELECTABLE_BODIES, SMALL_BODY_FIELDS } from './data/bodies'
@@ -18,7 +18,7 @@ import { useSimulationTime } from './hooks/useSimulationTime'
 import { POSITION_MODE } from './utils/orbitalMath'
 
 function App() {
-  const [scaleMode, setScaleMode] = useState(SIMULATION_DEFAULTS.scaleMode)
+  const scaleMode = SCALE_MODES.visualScale
   const [bloomSettings, setBloomSettings] = useState(BLOOM_DEFAULTS)
   const [quality, setQuality] = useState(RENDER_DEFAULTS.quality)
   const [flightTelemetry, setFlightTelemetry] = useState({
@@ -144,8 +144,6 @@ function App() {
       selectedBodyId={selectedBodyId}
       onSelectBody={handleSelectBody}
       quality={quality}
-      scaleMode={scaleMode}
-      onScaleModeChange={setScaleMode}
       simulationTime={simulationTime}
       simulationMode={simulationMode}
       realAlignmentSnapshotTime={

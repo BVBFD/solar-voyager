@@ -8,17 +8,14 @@ import { Sun } from './Sun'
 
 const BODY_QUALITY_LIMITS = {
   [QUALITY_LEVELS.low]: {
-    dwarfPlanetPriority: -1,
     moonPriority: 0,
     smallBodyPriority: 0,
   },
   [QUALITY_LEVELS.medium]: {
-    dwarfPlanetPriority: 1,
     moonPriority: 2,
     smallBodyPriority: 1,
   },
   [QUALITY_LEVELS.high]: {
-    dwarfPlanetPriority: 3,
     moonPriority: 3,
     smallBodyPriority: 2,
   },
@@ -37,7 +34,7 @@ function shouldRenderBody(body, quality) {
   }
 
   if (body.type === 'dwarfPlanet') {
-    return body.renderPriority <= limits.dwarfPlanetPriority
+    return true
   }
 
   return false

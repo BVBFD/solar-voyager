@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { getBodyName } from '../../utils/bodyI18n'
 import { formatDistanceKm } from '../../utils/formatters'
 
 export function PlanetList({ bodies, selectedBodyId, onSelectBody }) {
@@ -11,6 +12,10 @@ export function PlanetList({ bodies, selectedBodyId, onSelectBody }) {
     <nav className="planet-list" aria-label={t('planetList.aria')}>
       {navigationBodies.map((body) => {
         const isSelected = selectedBodyId === body.id
+        const bodyName = getBodyName(body, t)
+        const parentName = body.parentId
+          ? getBodyName(body.parentId, t)
+          : null
         const orbitDistanceKm =
           body.actualAverageOrbitDistanceKm ?? body.actualAverageDistanceFromSunKm
 
@@ -26,10 +31,10 @@ export function PlanetList({ bodies, selectedBodyId, onSelectBody }) {
                 className="planet-list__swatch"
                 style={{ backgroundColor: body.color }}
               />
-              <span>{body.name}</span>
+              <span>{bodyName}</span>
             </span>
             <span className="planet-list__meta">
-              {body.parentId ? `${body.parentId} / ` : ''}
+              {parentName ? `${parentName} / ` : ''}
               {formatDistanceKm(orbitDistanceKm)}
             </span>
           </button>

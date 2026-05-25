@@ -6,6 +6,7 @@ import {
   formatRadiusKm,
   formatUtcDateTime,
 } from '../../utils/formatters'
+import { getBodyDescription, getBodyName } from '../../utils/bodyI18n'
 
 export function InfoPanel({ body, ephemerisData }) {
   const { t } = useTranslation()
@@ -40,9 +41,8 @@ export function InfoPanel({ body, ephemerisData }) {
   const lastUpdated = ephemerisData?.updatedAt
     ? formatUtcDateTime(ephemerisData.updatedAt)
     : t('info.notLoaded')
-  const bodyDescription = t(`bodies.${body.id}.description`, {
-    defaultValue: body.description,
-  })
+  const bodyName = getBodyName(body, t)
+  const bodyDescription = getBodyDescription(body, t)
 
   return (
     <section className="info-panel">
@@ -54,7 +54,7 @@ export function InfoPanel({ body, ephemerisData }) {
         </span>
         {t('info.dossier')}
       </p>
-      <h2>{body.name}</h2>
+      <h2>{bodyName}</h2>
       <p>{bodyDescription}</p>
       <dl className="stat-list">
         <div>

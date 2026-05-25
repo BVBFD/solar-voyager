@@ -8,6 +8,7 @@ import { ModeSwitcher } from './ModeSwitcher'
 import { PlanetList } from './PlanetList'
 import { TimeControls } from './TimeControls'
 import { CONTROL_MODES, SIMULATION_MODES } from '../../data/constants'
+import { getBodyName } from '../../utils/bodyI18n'
 
 const QUALITY_LABEL_KEYS = {
   low: 'controls.quality.low',
@@ -58,6 +59,9 @@ export function AppShell({
   const [isStatusOpen, setIsStatusOpen] = useState(true)
   const [isDossierOpen, setIsDossierOpen] = useState(true)
   const [isTimeOpen, setIsTimeOpen] = useState(true)
+  const selectedBodyName = selectedBody
+    ? getBodyName(selectedBody, t)
+    : t('ui.solarSystem')
   const controlModeLabel =
     {
       [CONTROL_MODES.orbit]: t('controlModes.orbit'),
@@ -75,10 +79,10 @@ export function AppShell({
     }[controlMode] ??
     (travel?.isTraveling
       ? t('travel.travelingTo', {
-          body: selectedBody?.name ?? t('ui.solarSystem'),
+          body: selectedBodyName,
         })
       : t('travel.orbiting', {
-          body: selectedBody?.name ?? t('ui.solarSystem'),
+          body: selectedBodyName,
         }))
   const isRealAlignmentLoading = ephemerisData?.status === 'loading'
   const isSimulationOrbit =

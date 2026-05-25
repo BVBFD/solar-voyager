@@ -3,6 +3,7 @@ import { Html } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useTranslation } from 'react-i18next'
 import { Vector3 } from 'three'
+import { getBodyName } from '../../utils/bodyI18n'
 import { getBodyLabelIcon } from '../../utils/bodyLabelIcons'
 
 function clamp(value, min, max) {
@@ -36,9 +37,7 @@ function getLabelPosition(radius, body) {
 export function PlanetLabel({ body, isSelected, name, radius = 0 }) {
   const { t } = useTranslation()
   const bodyName = body?.name ?? name
-  const translatedName = body?.id
-    ? t(`bodies.${body.id}.name`, { defaultValue: bodyName })
-    : bodyName
+  const translatedName = body ? getBodyName(body, t) : bodyName
   const isMinor = body?.type && !['star', 'planet'].includes(body.type)
   const className = [
     'planet-label',

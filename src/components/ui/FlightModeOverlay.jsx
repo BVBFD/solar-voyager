@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CONTROL_MODES } from '../../data/constants'
+import { getBodyName } from '../../utils/bodyI18n'
 
 function formatFlightNumber(value, digits = 1) {
   if (!Number.isFinite(value)) {
@@ -20,6 +21,9 @@ export function FlightModeOverlay({
   const { t } = useTranslation()
   const [isLaunching, setIsLaunching] = useState(false)
   const previousModeRef = useRef(controlMode)
+  const nearestBodyName = telemetry?.nearestBodyName
+    ? getBodyName(telemetry.nearestBodyName, t)
+    : '--'
 
   useEffect(() => {
     const previousMode = previousModeRef.current
@@ -104,7 +108,7 @@ export function FlightModeOverlay({
           <p>{t('flight.pausedBody')}</p>
           <div className="flight-mode-overlay__stats">
             <span>{t('flight.nearest')}</span>
-            <strong>{telemetry?.nearestBodyName ?? '--'}</strong>
+            <strong>{nearestBodyName}</strong>
             <span>{t('flight.distance')}</span>
             <strong>
               {formatFlightNumber(telemetry?.distanceToNearest, 2)} u
@@ -158,7 +162,7 @@ export function FlightModeOverlay({
             </div>
             <div>
               <dt>{t('flight.nearest')}</dt>
-              <dd>{telemetry?.nearestBodyName ?? '--'}</dd>
+              <dd>{nearestBodyName}</dd>
             </div>
             <div>
               <dt>{t('flight.distance')}</dt>

@@ -55,18 +55,6 @@
     "simulation": "Simulation controls",
     "realAlignmentPending": "Align Soon",
     "realAlignmentPendingLabel": "Real alignment is being prepared",
-    "scale": {
-      "aria": "Scale mode",
-      "title": "Scale",
-      "visual": "Visual",
-      "compressed": "Compressed",
-      "realDraft": "Real draft",
-      "descriptions": {
-        "visualScale": "Readable distance and radius compression for navigation.",
-        "compressedRealScale": "Linear AU spacing with boosted planet radii.",
-        "realScalePlaceholder": "True-scale draft showing why exact scale is difficult."
-      }
-    },
     "quality": {
       "aria": "Render quality",
       "title": "Background Quality",

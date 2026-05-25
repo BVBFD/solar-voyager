@@ -55,18 +55,6 @@
     "simulation": "시뮬레이션 컨트롤",
     "realAlignmentPending": "정렬 준비중",
     "realAlignmentPendingLabel": "JPL 실제 정렬 연결 준비중",
-    "scale": {
-      "aria": "스케일 모드",
-      "title": "스케일",
-      "visual": "시각",
-      "compressed": "압축",
-      "realDraft": "실제 초안",
-      "descriptions": {
-        "visualScale": "탐색하기 좋게 거리와 반지름을 압축합니다.",
-        "compressedRealScale": "AU 간격은 선형에 가깝게 두고 행성 반지름을 보강합니다.",
-        "realScalePlaceholder": "정확한 실제 스케일이 왜 어려운지 보여주는 초안입니다."
-      }
-    },
     "quality": {
       "aria": "렌더 품질",
       "title": "배경 품질",

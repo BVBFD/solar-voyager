@@ -8,8 +8,6 @@ import { calculateBodySystemScenePosition } from '../../utils/vectorScale'
 
 const SPEED_BY_SCALE_MODE = {
   [SCALE_MODES.visualScale]: 7.2,
-  [SCALE_MODES.compressedRealScale]: 10.5,
-  [SCALE_MODES.realScalePlaceholder]: 8.4,
 }
 const LOOK_SENSITIVITY = 0.002
 const MIN_PITCH = -Math.PI / 2 + 0.08

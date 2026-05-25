@@ -5,8 +5,6 @@ export const EARTH_ORBITAL_PERIOD_DAYS = 365.25
 
 export const SCALE_MODES = {
   visualScale: 'visualScale',
-  compressedRealScale: 'compressedRealScale',
-  realScalePlaceholder: 'realScalePlaceholder',
 }
 
 export const SIMULATION_DEFAULTS = {

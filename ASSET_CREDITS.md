@@ -102,6 +102,21 @@ Endorsement note: Source material used for Solar Voyager; no affiliation, sponso
 ```
 
 ```text
+Asset path: public/textures/moons/moon/normal.jpg
+Body id: moon
+Texture type: normal
+Accuracy class: official model-derived texture
+Source title: CGI Moon Kit - LOLA Displacement Map
+Source URL: https://svs.gsfc.nasa.gov/4720/
+Provider: NASA SVS / LRO / LOLA
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA's Scientific Visualization Studio
+Changes made: ldem_3_8bit.jpg downloaded from NASA SVS, lightly blurred to reduce JPEG block noise, percentile-normalized, converted from height data to tangent-space normal map with central differences, and exported as 1024x512 JPG.
+Accuracy note: Rendering normal map derived from the CGI Moon Kit 8-bit displacement preview; suitable for visual crater relief, not scientific terrain analysis.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
 Asset path: public/textures/planets/mars/albedo.jpg
 Body id: mars
 Texture type: albedo

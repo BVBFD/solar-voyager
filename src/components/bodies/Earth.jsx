@@ -87,7 +87,7 @@ function EarthHighlightRing({ radius }) {
         blending={AdditiveBlending}
         color="#8bd8ff"
         depthWrite={false}
-        opacity={0.66}
+        opacity={0.2}
         transparent
       />
     </lineLoop>
@@ -143,10 +143,10 @@ export function Earth({
         </group>
         <CloudLayer
           body={body}
-          opacity={0.42}
+          opacity={0.2}
           radius={radius}
           rotationSpeed={0.16}
-          scale={1.032}
+          scale={1.018}
           segments={[64, 32]}
         />
         <Atmosphere body={body} radius={radius} />

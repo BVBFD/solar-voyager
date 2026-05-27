@@ -46,7 +46,7 @@ function SelectionRing({ color, radius }) {
         blending={AdditiveBlending}
         color={color}
         depthWrite={false}
-        opacity={0.68}
+        opacity={0.2}
         transparent
       />
     </lineLoop>

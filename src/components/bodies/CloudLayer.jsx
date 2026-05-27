@@ -21,7 +21,7 @@ export function CloudLayer({
     }
   })
 
-  if (!body.hasCloudLayer && !cloudTexture) {
+  if (!cloudTexture) {
     return null
   }
 
@@ -30,11 +30,11 @@ export function CloudLayer({
       <sphereGeometry args={[radius, segments[0], segments[1]]} />
       <meshPhysicalMaterial
         alphaMap={cloudTexture ?? undefined}
+        alphaTest={0.04}
         color="#ffffff"
         depthTest
         depthWrite={false}
-        map={cloudTexture ?? undefined}
-        opacity={cloudTexture ? opacity : opacity * 0.65}
+        opacity={opacity}
         roughness={1}
         transparent
       />

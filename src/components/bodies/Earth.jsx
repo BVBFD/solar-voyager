@@ -87,7 +87,7 @@ function EarthHighlightRing({ radius }) {
         blending={AdditiveBlending}
         color="#8bd8ff"
         depthWrite={false}
-        opacity={0.66}
+        opacity={0.2}
         transparent
       />
     </lineLoop>

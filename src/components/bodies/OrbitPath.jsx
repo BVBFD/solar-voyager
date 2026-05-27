@@ -30,7 +30,7 @@ export function OrbitPath({ body, scaleMode }) {
       color="#334155"
       lineWidth={1}
       transparent
-      opacity={0.45}
+      opacity={0.2}
     />
   )
 }

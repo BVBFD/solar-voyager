@@ -87,6 +87,51 @@ Endorsement note: Source material used for Solar Voyager; no affiliation, sponso
 ```
 
 ```text
+Asset path: public/textures/planets/earth/normal.jpg
+Body id: earth
+Texture type: normal
+Accuracy class: official model-derived texture
+Source title: Blue Marble: Next Generation Topography and Bathymetry Maps - Topography
+Source URL: https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/topography-bathymetry-maps/
+Provider: NASA Earth Observatory / Jesse Allen, using GEBCO data produced by the British Oceanographic Data Centre
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA Earth Observatory image by Jesse Allen, using data from the General Bathymetric Chart of the Oceans (GEBCO) produced by the British Oceanographic Data Centre.
+Changes made: 5400x2700 topography JPEG resized to 2048x1024, converted to grayscale height, lightly blurred, percentile-normalized, converted to tangent-space normal map with central differences, and exported as JPG.
+Accuracy note: Rendering normal map derived from a visualization-oriented topography product; useful for broad terrain relief, not scientific elevation analysis.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
+Asset path: public/textures/planets/earth/clouds.png
+Body id: earth
+Texture type: cloud
+Accuracy class: official observed texture
+Source title: Blue Marble: Clouds
+Source URL: https://visibleearth.nasa.gov/images/57747/blue-marble-clouds/57750l
+Provider: NASA Goddard Space Flight Center / Reto Stöckli
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA Goddard Space Flight Center image by Reto Stöckli.
+Changes made: cloud_combined_2048.jpg converted to a 2048x1024 grayscale cloud mask PNG for the app's shared map/alphaMap CloudLayer material; black background retained as transparent mask data through the red/luminance channel.
+Accuracy note: Composite cloud image assembled from several days of observations; suitable as a representative Earth cloud layer, not a live weather product.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
+Asset path: public/textures/planets/earth/night.jpg
+Body id: earth
+Texture type: night
+Accuracy class: official observed texture
+Source title: Earth at Night (Black Marble) 2016 Color Maps
+Source URL: https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/
+Provider: NASA Earth Observatory / NASA GSFC / Suomi NPP VIIRS
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA GSFC.
+Changes made: 3600x1800 0.1-degree Black Marble JPEG resized to 2048x1024 and exported as JPG.
+Accuracy note: 2016 cloud-free nighttime lights composite; not live night-side illumination and not currently rendered by Solar Voyager until night texture rendering is implemented.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
 Asset path: public/textures/moons/moon/albedo.jpg
 Body id: moon
 Texture type: albedo
@@ -128,6 +173,21 @@ License / usage terms: Public domain; use constraints none.
 Required credit line: USGS Astrogeology Science Center; NASA AMES; Viking Orbiter / Mariner 9 source data.
 Changes made: Ancillary 1km JPG resized to 2048x1024 JPG.
 Accuracy note: Colorized, controlled global mosaic with photometric and cosmetic processing; suitable as a visual basemap.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
+Asset path: public/textures/planets/mars/normal.jpg
+Body id: mars
+Texture type: normal
+Accuracy class: official model-derived texture
+Source title: Mars MGS MOLA - MEX HRSC Blended DEM Global 200m
+Source URL: https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m
+Provider: USGS Astrogeology Science Center / DLR / NASA Goddard Space Flight Center
+License / usage terms: MOLA (CC0) and HRSC (CC BY-SA 3.0 IGO); use constraints ask users to cite authors.
+Required credit line: Fergason, R. L., Hare, T. M., and Laura, J. R. (2018), HRSC and MOLA Blended Digital Elevation Model at 200m v2, Astrogeology PDS Annex, U.S. Geological Survey.
+Changes made: 1024px-wide USGS sample JPEG resized to 2048x1024, lightly blurred, percentile-normalized, converted from DEM grayscale to tangent-space normal map with central differences, and exported as JPG.
+Accuracy note: Rendering normal map derived from the public preview/sample of a scientific DEM; suitable for global Mars relief cues, not for measurement or landing-site analysis.
 Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
 ```
 
@@ -176,15 +236,67 @@ Accuracy note: Model-derived Mercury surface visual for application rendering; n
 Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
 ```
 
-## Deferred Assets
+```text
+Asset path: public/textures/planets/mercury/normal.jpg
+Body id: mercury
+Texture type: normal
+Accuracy class: official model-derived texture
+Source title: Mercury MESSENGER Global DEM 665m
+Source URL: https://astrogeology.usgs.gov/search/map/mercury_messenger_global_dem_665m
+Provider: USGS Astrogeology Science Center / NASA / Arizona State University / Johns Hopkins Applied Physics Laboratory / Carnegie Institution for Science
+License / usage terms: Access constraints none; use constraints ask users to cite authors.
+Required credit line: USGS Astrogeology Science Center; Kris Becker, NASA, Arizona State University, Johns Hopkins Applied Physics Laboratory, Carnegie Institution for Science.
+Changes made: 1024px-wide USGS DEM sample JPEG resized to 2048x1024, lightly blurred, percentile-normalized, converted from DEM grayscale to tangent-space normal map with central differences, and exported as JPG.
+Accuracy note: Rendering normal map derived from the public preview/sample of the Mercury global DEM; suitable for crater and terrain relief cues, not scientific elevation analysis.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
 
 ```text
-Asset path: public/textures/planets/earth/clouds.png
-Body id: earth
-Texture type: cloud
-Status: deferred
-Reason: Blue Marble: Clouds requires stable alpha generation and visual QA before use.
+Asset path: public/textures/planets/venus/albedo.jpg
+Body id: venus
+Texture type: albedo
+Accuracy class: official model-derived texture
+Source title: Venus
+Source URL: https://science.nasa.gov/3d-resources/venus/
+Provider: NASA 3D Resources / JPL-Caltech generated planetary maps
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA/JPL-Caltech generated planetary maps.
+Changes made: Venus.jpg resized from 1440x720 to 2048x1024 and exported as JPG.
+Accuracy note: Radar-derived and gap-filled model texture stitched from Magellan RADAR imagery; represents Venus' radar-mapped surface, not visible-light cloud appearance.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
 ```
+
+```text
+Asset path: public/textures/planets/uranus/albedo.jpg
+Body id: uranus
+Texture type: albedo
+Accuracy class: representative approximate texture
+Source title: Solar System Simulator Texture Maps - Uranus
+Source URL: https://space.jpl.nasa.gov/tmaps/uranus.html
+Provider: NASA/JPL-Caltech / David Seal
+License / usage terms: NASA/JPL image use terms and NASA media usage guidelines; no endorsement implied.
+Required credit line: NASA/JPL-Caltech; David Seal.
+Changes made: Generated a 2048x1024 solid-color JPG from the documented JPL Solar System Simulator Uranus texture color, hex #0087d5.
+Accuracy note: JPL source documents this Uranus texture as fictional and plain solid blue; it fills the missing manifest texture without inventing atmospheric normal detail.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+```text
+Asset path: public/textures/planets/neptune/albedo.jpg
+Body id: neptune
+Texture type: albedo
+Accuracy class: representative approximate texture
+Source title: Neptune
+Source URL: https://science.nasa.gov/3d-resources/neptune/
+Provider: NASA 3D Resources / Don Davis / JPL-Caltech
+License / usage terms: NASA media usage guidelines; no endorsement implied.
+Required credit line: Don Davis & JPL/Caltech.
+Changes made: Neptune.jpg resized from 720x360 to 2048x1024 and exported as JPG.
+Accuracy note: Source page identifies the texture as fictional with cloud features; suitable as a representative visual cloud-deck texture, not observed global mapping.
+Endorsement note: Source material used for Solar Voyager; no affiliation, sponsorship, or endorsement is implied.
+```
+
+## Deferred Assets
 
 ```text
 Asset path: public/textures/planets/saturn/ring.png

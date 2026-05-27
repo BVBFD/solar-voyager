@@ -4,7 +4,7 @@ import { AdditiveBlending, CanvasTexture, Vector3 } from 'three'
 
 function getMarkerOpacity(distance, isSelected) {
   if (isSelected) {
-    return 0.34
+    return 0
   }
 
   if (distance < 18) {
